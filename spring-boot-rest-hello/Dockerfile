@@ -8,7 +8,7 @@ LABEL maintainer="sumeetmondal@gmail.com"
 VOLUME /tmp
 
 # Make port 8080 available to the world outside this container
-EXPOSE 8764:8764
+EXPOSE 8764
 
 # The application's jar file
 ARG JAR_FILE=dist/spring-boot-rest-hello-0.0.1-SNAPSHOT.jar
