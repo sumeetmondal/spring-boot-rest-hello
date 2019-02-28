@@ -12,10 +12,14 @@ public class Controller {
 	@RequestMapping(value="/getHello")
 	public String getHello(){
 		System.out.println("Hello!");
-		String hello = "hello";
-		return hello;
+		return "hello";
 	}
 
+	@RequestMapping(value="/getHi")
+	public String getHi(){
+		System.out.println("Hi!");
+		return "Hi";
+	}
 
 	@RequestMapping(value="/getFactorial")
 	public BigInteger getFactorial(@RequestParam(value = "number") BigInteger number ){
