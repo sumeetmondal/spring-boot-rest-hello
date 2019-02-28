@@ -16,6 +16,7 @@ public class Controller {
 		return hello;
 	}
 
+
 	@RequestMapping(value="/getFactorial")
 	public BigInteger getFactorial(@RequestParam(value = "number") BigInteger number ){
 		return Utils.factorial(number);

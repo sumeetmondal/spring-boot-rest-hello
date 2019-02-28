@@ -1,20 +1,10 @@
-#Start with a base image containing Java runtime
+FROM maven:3.5-jdk-8-alpine as build
+COPY ./pom.xml ./pom.xml
+RUN mvn dependency:go-offline -B
+COPY ./src ./src
+RUN mvn clean install
+
 FROM openjdk:8-jdk-alpine
-
-# Add Maintainer Info
-LABEL maintainer="sumeetmondal@gmail.com"
-
-# Add a volume pointing to /tmp
-VOLUME /tmp
-
-# Make port 8080 available to the world outside this container
-EXPOSE 8764
-
-# The application's jar file
-ARG JAR_FILE=dist/spring-boot-rest-hello-0.0.1-SNAPSHOT.jar
-
-# Add the application's jar to the container
-ADD ${JAR_FILE} spring-boot-rest-hello.jar
-
-# Run the jar file 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/spring-boot-rest-hello.jar"]
+EXPOSE 8763
+COPY --from=build /dist/spring-boot-rest-hello-0.0.1-SNAPSHOT.jar ./spring-boot-rest-hello.jar
+ENTRYPOINT ["java","-jar","./spring-boot-rest-hello.jar"]
