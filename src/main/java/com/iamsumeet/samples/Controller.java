@@ -21,6 +21,12 @@ public class Controller {
 		return "Hi";
 	}
 
+	@RequestMapping(value="/")
+	public String welcome(){
+		System.out.println("Welcome!");
+		return "Welcome";
+	}
+
 	@RequestMapping(value="/getFactorial")
 	public BigInteger getFactorial(@RequestParam(value = "number") BigInteger number ){
 		return Utils.factorial(number);
